@@ -1,0 +1,26 @@
+import json as j
+data = {
+   'name' : 'ACME',
+   'shares' : 100,
+   'price' : 542.23
+}
+
+k=j.dumps(data,indent=4)
+
+print data["name"]
+print k 
+'''import json
+obj = {u"answer": [42.2], u"abs": 42}
+a = json.dumps(obj, indent=4)
+f = open("j.json","w")
+f.write(a)
+f.close()'''
+
+
+def jdefault(o):
+    if isinstance(o, set):
+        return list(o)
+    return o.__dict__
+
+pets = set([u'Tiger', u'Panther', u'Toad'])
+print(json.dumps(pets, default=jdefault))

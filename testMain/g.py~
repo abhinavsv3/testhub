@@ -1,0 +1,7 @@
+d = {}
+with open('text.txt') as f:
+	for line in f:
+		(key,val) = line.split()
+		d[int(key)] = int(val)
+	for i in d:
+		print i

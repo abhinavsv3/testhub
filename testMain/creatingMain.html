@@ -1,0 +1,54 @@
+<html>
+<head>
+  <link rel="stylesheet" href="http://abhinavsv3.github.io/javascriptsal/alchemy.min.css"/>
+</head>
+<body>
+<script>
+
+var fileInput = $('#files');
+var uploadButton = $('#upload');
+
+uploadButton.on('click', function() {
+    alert("Clicked")
+    if (!window.FileReader) {
+        
+        return false;
+    }
+    var input = fileInput.get(0);
+
+    // Create a reader object
+    var reader = new FileReader();
+    if (input.files.length) {
+        var textFile = input.files[0];
+        // Read the file
+        reader.readAsText(textFile);
+        // When it's loaded, process it
+        $(reader).on("load", processFile);
+    } else {
+        alert("Please upload a file before continuing")
+    } 
+});
+
+function processFile(e) {
+    var file = e.target.result,
+        results;
+    if (file && file.length) {
+        results = file.split("\n");
+        $('#name').val(results[0]);
+        $('#age').val(results[1]);
+    }
+}
+
+</script>
+
+<input type=file id=files />
+
+<button id="upload">Upload</button>
+<br/><br/>
+
+<input type=text id=name /><br/>
+<input type=text id=age />
+
+</body>
+
+</html>
